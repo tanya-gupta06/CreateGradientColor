@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            width: 100%;
+            height: 100vh;
+            background-image: linear-gradient(
+            to rigt top,
+            #051937
+            #004d7a
+            #008793
+            #00bf72
+            #a8eb12
+            );
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #mybutton{
+            background-color: rgb(192, 74, 74);
+            border-radius: 20px;
+            padding: 10px;
+        }
+        #mybutton2{
+            background-color: rgb(38, 186, 24);
+            border-radius: 20px;
+            padding: 10px;
+        }
+        h2{
+            height: 40px;
+            width: fit-content;
+            /* opacity: 0.3; */
+            /* background-color: gray ; */
+            background-color: rgb(255 255 255 / 30%);
+            backdrop-filter: blur(10px);
+        }
+        .copyCode{
+           /* background-color: gray ; */
+           /* opacity: 0.3; */
+           background-color: rgb(255 255 255 / 30%);
+            backdrop-filter: blur(10px);
+           color: black;
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <div>
+            <button id="mybutton">#051937</button>
+            <button id="mybutton2">#008793</button>
+        </div>
+        <h4>Copy your code here</h4>
+        <div class="copyCode">
+            background-image : linear-gradient(to right,<br> 
+            rgb(92, 145, 229), rgb(152,63, 198))
+        </div>
+    </section>
+    <script>
+        let btn1 = document.getElementById("mybutton");
+        let btn2 = document.getElementById("mybutton2");
+        let copyDiv = document.querySelector(".copyCode");
+        let rgb1 = "#000";
+        let rgb2 = "444";
+
+        const haxValues = () =>{
+            let myHexValues = "0123456789abcdef";
+            let colors = "#";
+            for(let i=0; i<6; i++){
+             colors = colors + (myHexValues[Math.floor(Math.random() *16)]);
+            }
+        return colors;
+        };
+
+
+        const handleButton1 =() =>{
+           rgb1 = haxValues();
+           console.log(rgb1);
+           btn1.innerText = rgb1;
+           document.body.style.backgroundImage = `linear-gradient(to right, ${rgb1} , ${rgb2})`;
+           copyDiv.innerHTML = `background-image : linear-gradient(to right,  ${rgb1} , ${rgb2})`;
+        };
+
+        const handleButton2 = () =>{
+            rgb2 = haxValues();
+           console.log(rgb2); 
+           btn2.innerText = rgb2;
+           document.body.style.backgroundImage = `linear-gradient(to right, ${rgb1} , ${rgb2})`;
+           copyDiv.innerHTML = `background-image : linear-gradient(to right,  ${rgb1} ,${rgb2})`;
+        };
+
+
+        btn1.addEventListener('click', handleButton1);
+        btn2.addEventListener('click', handleButton2);
+        
+
+        copyDiv.addEventListener('click', () =>{
+            navigator.clipboard.writeText(copyDiv.innerText);
+        });
+
+    </script>
+</body>
+</html>
